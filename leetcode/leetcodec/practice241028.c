@@ -22,7 +22,7 @@ int* findRedundantDirectedConnection(int** edges, int edgesSize, int* edgesColSi
     for (int i = 1; i <= n; ++i) {
         ancestor[i] = i;
     }
-    int parent[n + 1];
+    int parent[n+1];
     for (int i = 1; i <= n; ++i) {
         parent[i] = i;
     }

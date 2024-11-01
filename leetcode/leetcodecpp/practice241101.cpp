@@ -13,7 +13,8 @@ public:
     using ll = long long;
     long long maxEnergyBoost(vector<int>& energyDrinkA, vector<int>& energyDrinkB) {
         int n = energyDrinkA.size();
-        vector<vector<ll>> d(n + 1, vector<ll>(2, 0));
+        vector<vector<ll>> d(n + 1, vector<ll>(2, 0));  
+        // 创建一个二维动态数组 并且全部初始化为0 总大小是2*（n+1）
         for (int i = 1; i <= n; i++) {
             d[i][0] = d[i - 1][0] + energyDrinkA[i - 1];
             d[i][1] = d[i - 1][1] + energyDrinkB[i - 1];

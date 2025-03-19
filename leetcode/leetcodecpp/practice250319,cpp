@@ -1,0 +1,42 @@
+// 2610. 转换二维数组
+
+// 给你一个整数数组 nums 。请你创建一个满足以下条件的二维数组：
+// 二维数组应该 只 包含数组 nums 中的元素。
+// 二维数组中的每一行都包含 不同 的整数。
+// 二维数组的行数应尽可能 少 。
+// 返回结果数组。如果存在多种答案，则返回其中任何一种。
+
+//    请注意，二维数组的每一行上可以存在不同数量的元素。
+
+// 哈希表 + 指针 + 贪心 
+class Solution {
+public:
+    vector<vector<int>> findMatrix(vector<int>& nums) {
+        unordered_map<int, int> cnt;
+        for (int x : nums) {
+            cnt[x]++;
+        }
+
+        vector<vector<int>> ans;
+        while (!cnt.empty()) {
+            vector<int> arr;
+            for (auto it = cnt.begin(); it != cnt.end(); ) {
+                it->second -= 1;
+                arr.emplace_back(it->first);
+                if (it->second == 0) {
+                    it = cnt.erase(it);
+                } else {
+                    it++;
+                }
+            }
+            ans.push_back(arr);
+        }
+        
+        return ans;
+    }
+};
+
+// 时间复杂度：O(n)，其中 n 表示给定的数组的长度。我们需要枚举哈希表中每个不同的元素，将数组中所有元素进行分组，每个元素仅访问一次，需要的时间为 O(n)。
+
+// 空间复杂度：O(n)，其中 n 表示给定的数组的长度。需要用哈希表存储数组中所有元素出现的次数，需要的空间为 O(n)。
+
